@@ -7,7 +7,7 @@
       :size="size"
       f7="app_fill"
     ></f7-icon>
-    <f7-icon :tooltip="String(currAge)" :size="size" f7="app_fill" style="color:green;"></f7-icon>
+    <f7-icon :tooltip="String(currAge)" :size="size" f7="app" style="color:lightgreen;"></f7-icon>
     <f7-icon
       v-for="unfilled in lifeLeft"
       :tooltip="String(unfilled + currAge)"
