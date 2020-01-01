@@ -23,8 +23,7 @@ export default {
     return {
       currAge: 28,
       lifeExpectancy: 80,
-      size: 150,
-      limit: 100,
+      size: 200,
       show: true
     };
   },
@@ -44,10 +43,9 @@ export default {
       });
     },
     async resize() {
-      while ((await this.isOverflowing()) && this.limit > 0) {
+      while (await this.isOverflowing()) {
         this.show = false;
         this.size -= 5;
-        this.limit -= 1;
         this.show = true;
         this.$forceUpdate();
       }
