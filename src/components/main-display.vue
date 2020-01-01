@@ -1,12 +1,13 @@
 <template>
   <div v-if="show" class="main-container" ref="mainContainer">
     <f7-icon
-      v-for="filled in currAge"
+      v-for="filled in (currAge - 1)"
       :tooltip="String(filled)"
       :key="'filled-' + filled"
       :size="size"
       f7="app_fill"
     ></f7-icon>
+    <f7-icon :tooltip="String(currAge)" :size="size" f7="app_fill" style="color:green;"></f7-icon>
     <f7-icon
       v-for="unfilled in lifeLeft"
       :tooltip="String(unfilled + currAge)"
