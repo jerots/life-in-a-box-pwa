@@ -7,7 +7,7 @@
         <f7-link
           icon-ios="f7:gear_alt"
           icon-aurora="f7:gear_alt"
-          icon-md="material:gear_alt"
+          icon-md="f7:gear_alt"
           href="settings"
         ></f7-link>
       </f7-nav-right>
