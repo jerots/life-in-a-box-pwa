@@ -24,11 +24,12 @@
   </f7-page>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["lifeExpectancy", "birthDate"])
+    ...mapGetters(["birthDate"]),
+    ...mapState(["lifeExpectancy"])
   },
   methods: {
     ...mapActions(["setLifeExpectancy", "setBirthDate"])

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="main-container" ref="mainContainer">
+  <div class="main-container" ref="mainContainer">
     <f7-icon
       v-for="filled in (currAge - 1)"
       :tooltip="String(filled)"
@@ -24,8 +24,7 @@ import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      size: 200,
-      show: true
+      size: 200
     };
   },
   computed: {
@@ -43,10 +42,9 @@ export default {
       });
     },
     async resize() {
+      this.size = 200;
       while (await this.isOverflowing()) {
-        this.show = false;
         this.size -= 5;
-        this.show = true;
         this.$forceUpdate();
       }
     }

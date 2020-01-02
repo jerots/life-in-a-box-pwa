@@ -1,18 +1,28 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersist from 'vuex-persist'
 Vue.use(Vuex);
 
+const vuexPersist = new VuexPersist({
+    key: 'life-in-a-box',
+    storage: window.localStorage
+})
+
 const store = new Vuex.Store({
+    plugins: [vuexPersist.plugin],
     state: {
         lifeExpectancy: 80,
-        birthDate: new Date("1980-01-01")
+        birthDateUTC: "1980-01-01T00:00:00+00:00"
     },
     getters: {
+        birthDate(state, getters) {
+            return new Date(state.birthDateUTC);
+        },
         lifeLeft(state, getters) {
             return state.lifeExpectancy - getters.currAge;
         },
         currAge(state, getters) {
-            const birthDate = state.birthDate;
+            const birthDate = getters.birthDate;
             const birthYear = birthDate.getFullYear();
             const birthMonth = birthDate.getMonth() + 1;
             const birthDay = birthDate.getDate();
@@ -45,7 +55,7 @@ const store = new Vuex.Store({
             state.lifeExpectancy = payload;
         },
         setBirthDate(state, payload) {
-            state.birthDate = payload;
+            state.birthDateUTC = payload.toUTCString();
         }
     }
 })
