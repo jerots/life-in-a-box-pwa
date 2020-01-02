@@ -15,7 +15,7 @@
           @range:change="setLifeExpectancy"
           slot="input"
           :value="lifeExpectancy"
-          :min="1"
+          :min="currAge"
           :max="120"
           :step="1"
         ></f7-range>
@@ -28,7 +28,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["birthDate"]),
+    ...mapGetters(["birthDate", "currAge"]),
     ...mapState(["lifeExpectancy"])
   },
   methods: {

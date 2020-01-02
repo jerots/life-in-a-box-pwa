@@ -28,8 +28,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["lifeLeft", "currAge"]),
-    ...mapState(["lifeExpectancy"])
+    ...mapGetters(["lifeLeft", "currAge"])
   },
   methods: {
     isOverflowing() {

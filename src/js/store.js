@@ -19,7 +19,7 @@ const store = new Vuex.Store({
             return new Date(state.birthDateUTC);
         },
         lifeLeft(state, getters) {
-            return state.lifeExpectancy - getters.currAge;
+            return Math.max(state.lifeExpectancy - getters.currAge, 0);
         },
         currAge(state, getters) {
             const birthDate = getters.birthDate;
