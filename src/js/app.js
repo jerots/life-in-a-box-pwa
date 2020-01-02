@@ -16,17 +16,22 @@ import "babel-polyfill";
 import '../css/icons.css';
 import '../css/app.less';
 
+
 // Import App Component
 import App from '../components/app.vue';
 
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue);
 
+
+import store from './store.js';
+
+
 // Init App
 new Vue({
   el: '#app',
   render: (h) => h(App),
-
+  store,
   // Register App Component
   components: {
     app: App

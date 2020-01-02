@@ -19,19 +19,18 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      currAge: 28,
-      lifeExpectancy: 80,
       size: 200,
       show: true
     };
   },
   computed: {
-    lifeLeft() {
-      return this.lifeExpectancy - this.currAge;
-    }
+    ...mapGetters(["lifeLeft", "currAge"]),
+    ...mapState(["lifeExpectancy"])
   },
   methods: {
     isOverflowing() {
