@@ -1,5 +1,5 @@
 <template>
-  <f7-page name="home" ptr ptr-mousewheel ptr-bottom @ptr:refresh="resize">
+  <f7-page name="home" ptr ptr-mousewheel @ptr:refresh="resize">
     <!-- Top Navbar -->
     <f7-navbar :sliding="false">
       <f7-nav-title sliding>Life in a box</f7-nav-title>
