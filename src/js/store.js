@@ -49,12 +49,16 @@ const store = new Vuex.Store({
     },
     mutations: {
         setLifeExpectancy(state, payload) {
-            state.lifeExpectancy = payload;
-            state.sizeShouldUpdate = true;
+            if (state.lifeExpectancy !== payload) {
+                state.lifeExpectancy = payload;
+                state.sizeShouldUpdate = true;
+            }
         },
         setBirthDate(state, [payload]) {
-            state.birthDateUTC = payload.toUTCString();
-            state.sizeShouldUpdate = true;
+            if (state.birthDateUTC !== payload.toUTCString()) {
+                state.birthDateUTC = payload.toUTCString();
+                state.sizeShouldUpdate = true;
+            }
         },
         setSize(state, payload) {
             state.size = payload;

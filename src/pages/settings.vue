@@ -33,9 +33,6 @@ export default {
   },
   methods: {
     ...mapMutations(["setLifeExpectancy", "setBirthDate"])
-  },
-  mounted() {
-    const app = this.$f7;
   }
 };
 </script>
