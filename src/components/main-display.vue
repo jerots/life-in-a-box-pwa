@@ -43,7 +43,7 @@ export default {
     async resize() {
       this.size = 200;
       while (await this.isOverflowing()) {
-        this.size -= 5;
+        this.size -= 1;
         this.$forceUpdate();
       }
     }
@@ -60,6 +60,7 @@ export default {
   flex-wrap: wrap;
   height: 100%;
   align-content: flex-start;
+  justify-content: space-evenly;
   /* overflow: hidden; */
 }
 
