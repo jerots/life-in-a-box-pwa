@@ -12,7 +12,9 @@ const store = new Vuex.Store({
     plugins: [vuexPersist.plugin],
     state: {
         lifeExpectancy: 80,
-        birthDateUTC: "1980-01-01T00:00:00+00:00"
+        birthDateUTC: "1980-01-01T00:00:00+00:00",
+        size: 200,
+        sizeShouldUpdate: true
     },
     getters: {
         birthDate(state, getters) {
@@ -43,20 +45,21 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        setLifeExpectancy({ commit }, payload) {
-            commit("setLifeExpectancy", payload);
-        },
-        setBirthDate({ commit }, [payload]) {
-            commit("setBirthDate", payload);
-        }
+
     },
     mutations: {
         setLifeExpectancy(state, payload) {
             state.lifeExpectancy = payload;
+            state.sizeShouldUpdate = true;
         },
-        setBirthDate(state, payload) {
+        setBirthDate(state, [payload]) {
             state.birthDateUTC = payload.toUTCString();
-        }
+            state.sizeShouldUpdate = true;
+        },
+        setSize(state, payload) {
+            state.size = payload;
+            state.sizeShouldUpdate = false;
+        },
     }
 })
 

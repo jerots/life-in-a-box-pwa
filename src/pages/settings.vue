@@ -24,7 +24,7 @@
   </f7-page>
 </template>
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   computed: {
@@ -32,7 +32,7 @@ export default {
     ...mapState(["lifeExpectancy"])
   },
   methods: {
-    ...mapActions(["setLifeExpectancy", "setBirthDate"])
+    ...mapMutations(["setLifeExpectancy", "setBirthDate"])
   },
   mounted() {
     const app = this.$f7;

@@ -19,18 +19,17 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
+
+import { debounce } from "lodash";
 
 export default {
-  data() {
-    return {
-      size: 200
-    };
-  },
   computed: {
-    ...mapGetters(["lifeLeft", "currAge"])
+    ...mapGetters(["lifeLeft", "currAge"]),
+    ...mapState(["size", "sizeShouldUpdate"])
   },
   methods: {
+    ...mapMutations(["setSize"]),
     isOverflowing() {
       return this.$nextTick().then(() => {
         const element = this.$refs.mainContainer;
@@ -41,15 +40,22 @@ export default {
       });
     },
     async resize() {
-      this.size = 200;
+      this.$f7.dialog.preloader("Resizing...");
+      await this.debouncedResize();
+    },
+    debouncedResize: debounce(async function() {
+      this.setSize(200);
       while (await this.isOverflowing()) {
-        this.size -= 1;
+        this.setSize(this.size - 1);
         this.$forceUpdate();
+        this.$f7.dialog.close();
       }
-    }
+    }, 100)
   },
   mounted() {
-    this.resize();
+    if (this.sizeShouldUpdate) {
+      this.resize();
+    }
   }
 };
 </script>
