@@ -35,10 +35,10 @@ const store = new Vuex.Store({
             const todayDay = todayDate.getDate();
 
             let age = todayYear - birthYear;
-            if (birthMonth < todayMonth) {
-                age += 1;
-            } else if (birthMonth === todayMonth && birthDay <= todayDay) {
-                age += 1;
+            if (birthMonth > todayMonth) {
+                age -= 1;
+            } else if (birthMonth === todayMonth && birthDay > todayDay) {
+                age -= 1;
             }
             return age;
 
