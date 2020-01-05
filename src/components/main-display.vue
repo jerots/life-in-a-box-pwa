@@ -1,5 +1,6 @@
 <template>
   <div class="main-container" ref="mainContainer">
+    <f7-progressbar v-if="loading" infinite></f7-progressbar>
     <f7-icon
       v-for="filled in (currAge - 1)"
       :tooltip="filled + ' years old'"
@@ -24,6 +25,11 @@ import { mapState, mapGetters, mapMutations } from "vuex";
 import { debounce } from "lodash";
 
 export default {
+  data() {
+    return {
+      loading: false
+    };
+  },
   computed: {
     ...mapGetters(["lifeLeft", "currAge"]),
     ...mapState(["size", "sizeShouldUpdate"])
@@ -40,22 +46,27 @@ export default {
       });
     },
     async resize() {
-      this.$f7.dialog.preloader("Resizing...");
+      this.loading = true;
       await this.debouncedResize();
     },
     debouncedResize: debounce(async function() {
+      this.loading = true;
       this.setSize(200);
       while (await this.isOverflowing()) {
         this.setSize(this.size - 1);
         this.$forceUpdate();
-        this.$f7.dialog.close();
       }
-    }, 100)
+      this.loading = false;
+    }, 2000)
   },
-  mounted() {
+  updated() {
     if (this.sizeShouldUpdate) {
       this.resize();
     }
+  },
+  mounted() {
+    this.resize();
+    window.onresize = this.resize;
   }
 };
 </script>
