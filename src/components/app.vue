@@ -8,6 +8,7 @@
 import routes from "../js/routes.js";
 
 export default {
+  computed: {},
   data() {
     return {
       // Framework7 Parameters
@@ -16,12 +17,7 @@ export default {
         theme: "auto", // Automatic theme detection
         // App root data
         data: function() {
-          return {
-            user: {
-              firstName: "John",
-              lastName: "Doe"
-            }
-          };
+          return {};
         },
 
         // App routes
@@ -33,13 +29,7 @@ export default {
       password: ""
     };
   },
-  methods: {
-    alertLoginData() {
-      this.$f7.dialog.alert(
-        "Username: " + this.username + "<br>Password: " + this.password
-      );
-    }
-  },
+  methods: {},
   mounted() {
     this.$f7ready(f7 => {
       // Call F7 APIs here

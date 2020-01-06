@@ -14,7 +14,8 @@ const store = new Vuex.Store({
         lifeExpectancy: 80,
         birthDateUTC: "1980-01-01T00:00:00+00:00",
         size: 200,
-        sizeShouldUpdate: true
+        sizeShouldUpdate: true,
+        initialized: false
     },
     getters: {
         birthDate(state, getters) {
@@ -64,6 +65,9 @@ const store = new Vuex.Store({
             state.size = payload;
             state.sizeShouldUpdate = false;
         },
+        setInitialized(state, payload) {
+            state.initialized = true;
+        }
     }
 })
 

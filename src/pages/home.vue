@@ -17,14 +17,27 @@
 </template>
 <script>
 import MainDisplay from "../components/main-display";
+import { mapState, mapMutations } from "vuex";
+
 export default {
   components: {
     MainDisplay
   },
+  computed: {
+    ...mapState(["initialized"])
+  },
+
   methods: {
     async resize(done) {
       await this.$refs.mainDisplay.resize();
       done();
+    },
+    ...mapMutations(["setInitialized"])
+  },
+  mounted() {
+    if (!this.initialized) {
+      this.$f7router.navigate("/settings", {});
+      this.setInitialized(true);
     }
   }
 };
