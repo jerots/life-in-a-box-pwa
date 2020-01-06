@@ -2,14 +2,16 @@
   <div class="main-container" ref="mainContainer">
     <f7-progressbar v-if="loading" infinite></f7-progressbar>
     <f7-icon
+      class="year-box"
       v-for="filled in (currAge - 1)"
       :tooltip="filled + ' years old'"
       :key="'filled-' + filled"
       :size="size"
       f7="app_fill"
     ></f7-icon>
-    <f7-icon :tooltip="currAge + ' years old'" :size="size" f7="app" style="color:lightgreen;"></f7-icon>
+    <f7-icon class="year-box current-year" :tooltip="currAge + ' years old'" :size="size" f7="app"></f7-icon>
     <f7-icon
+      class="year-box"
       v-for="unfilled in lifeLeft"
       :tooltip="(unfilled + currAge) + ' years old'"
       :key="'unfilled-' + unfilled"
@@ -82,5 +84,21 @@ export default {
 }
 
 .life-unit {
+}
+
+.year-box {
+  cursor: default;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                      supported by Chrome, Opera and Firefox */
+}
+
+.current-year {
+  color: lightgreen;
 }
 </style>
