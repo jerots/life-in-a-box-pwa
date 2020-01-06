@@ -58,7 +58,6 @@ const store = new Vuex.Store({
         setBirthDate(state, [payload]) {
             if (state.birthDateUTC !== payload.toUTCString()) {
                 state.birthDateUTC = payload.toUTCString();
-                state.sizeShouldUpdate = true;
             }
         },
         setSize(state, payload) {
